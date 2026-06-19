@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Reports</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">🏥 HMS</div>
+
+<ul>
+
+<li><a href="/dashboard">Dashboard</a></li>
+<li><a href="/patients">Patients</a></li>
+<li><a href="/doctors">Doctors</a></li>
+<li><a href="/appointments">Appointments</a></li>
+<li><a href="/billing">Billing</a></li>
+<li class="active"><a href="/reports">Reports</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h2 class="mb-4">Hospital Reports</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card text-bg-primary">
+
+<div class="card-body">
+
+<h5>Patients</h5>
+
+<h2 th:text="${patientCount}">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-success">
+
+<div class="card-body">
+
+<h5>Doctors</h5>
+
+<h2 th:text="${doctorCount}">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-warning">
+
+<div class="card-body">
+
+<h5>Appointments</h5>
+
+<h2 th:text="${appointmentCount}">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-danger">
+
+<div class="card-body">
+
+<h5>Revenue</h5>
+
+<h2>₹ <span th:text="${revenue}">0</span></h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header">
+
+Hospital Statistics
+
+</div>
+
+<div class="card-body">
+
+<canvas id="reportChart"></canvas>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="window.print()" class="btn btn-success">
+
+<i class="bi bi-printer-fill"></i>
+
+Print Report
+
+</button>
+
+</div>
+
+<script th:inline="javascript">
+
+const patientCount = /*[[${patientCount}]]*/ 0;
+const doctorCount = /*[[${doctorCount}]]*/ 0;
+const appointmentCount = /*[[${appointmentCount}]]*/ 0;
+
+new Chart(document.getElementById("reportChart"), {
+    type: "bar",
+    data: {
+        labels: ["Patients", "Doctors", "Appointments"],
+        datasets: [{
+            label: "Hospital Report",
+            data: [patientCount, doctorCount, appointmentCount]
+        }]
+    }
+});
+
+</script>
+
+</body>
+
+</html>

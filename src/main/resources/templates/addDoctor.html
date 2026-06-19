@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Add Doctor</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+
+body{
+    background:#f4f7fb;
+}
+
+.form-card{
+
+    width:800px;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.form-title{
+
+    text-align:center;
+    color:#2563eb;
+    font-weight:bold;
+    margin-bottom:30px;
+
+}
+
+.form-control{
+
+    height:50px;
+    border-radius:12px;
+
+}
+
+.input-group-text{
+
+    width:50px;
+    justify-content:center;
+
+}
+
+.btn-save{
+
+    background:#2563eb;
+    color:white;
+    border-radius:12px;
+    padding:12px 35px;
+
+}
+
+.btn-save:hover{
+
+    background:#1d4ed8;
+    color:white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="form-card">
+
+<h2 class="form-title">
+
+<i class="bi bi-person-plus-fill"></i>
+
+Add Doctor
+
+</h2>
+
+<form action="/saveDoctor" method="post">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Doctor Name</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-person-fill"></i>
+
+</span>
+
+<input
+type="text"
+name="doctorName"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Specialization</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-heart-pulse-fill"></i>
+
+</span>
+
+<input
+type="text"
+name="specialization"
+class="form-control"
+placeholder="Cardiologist"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Phone</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-telephone-fill"></i>
+
+</span>
+
+<input
+type="text"
+name="phone"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Email</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-envelope-fill"></i>
+
+</span>
+
+<input
+type="email"
+name="email"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="mb-4">
+
+<label>Experience (Years)</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-award-fill"></i>
+
+</span>
+
+<input
+type="number"
+name="experience"
+class="form-control"
+min="0"
+required>
+
+</div>
+
+</div>
+
+<div class="text-center">
+
+<button class="btn btn-save">
+
+<i class="bi bi-check-circle-fill"></i>
+
+Save Doctor
+
+</button>
+
+<a
+href="/doctors"
+class="btn btn-secondary">
+
+<i class="bi bi-arrow-left"></i>
+
+Back
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

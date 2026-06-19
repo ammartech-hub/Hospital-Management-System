@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Doctors</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        🏥 HMS
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="/dashboard">
+
+                <i class="bi bi-speedometer2"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/patients">
+
+                <i class="bi bi-people-fill"></i>
+
+                Patients
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="/doctors">
+
+                <i class="bi bi-heart-pulse-fill"></i>
+
+                Doctors
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/appointments">
+
+                <i class="bi bi-calendar-check-fill"></i>
+
+                Appointments
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/billing">
+
+                <i class="bi bi-cash-stack"></i>
+
+                Billing
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>
+
+Doctors
+
+</h2>
+
+<p>
+
+Manage Hospital Doctors
+
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="search-box">
+
+<i class="bi bi-search"></i>
+
+<input
+
+id="searchDoctor"
+
+type="text"
+
+placeholder="Search Doctor...">
+
+</div>
+
+<a
+
+href="/addDoctor"
+
+class="btn btn-primary">
+
+<i class="bi bi-plus-circle"></i>
+
+Add Doctor
+
+</a>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<table class="table table-hover align-middle">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Specialization</th>
+
+<th>Phone</th>
+
+<th>Email</th>
+
+<th>Experience</th>
+
+<th width="170">
+
+Action
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="doctorTable">
+
+<tr th:each="doctor : ${doctors}">
+
+<td th:text="${doctor.doctorId}"></td>
+
+<td>
+
+<i class="bi bi-person-badge-fill text-primary"></i>
+
+<span th:text="${doctor.doctorName}"></span>
+
+</td>
+
+<td>
+
+<span
+
+class="badge bg-success"
+
+th:text="${doctor.specialization}">
+
+</span>
+
+</td>
+
+<td th:text="${doctor.phone}"></td>
+
+<td th:text="${doctor.email}"></td>
+
+<td>
+
+<span
+
+class="badge bg-info"
+
+th:text="${doctor.experience + ' Years'}">
+
+</span>
+
+</td>
+
+<td>
+
+<a
+
+th:href="@{/editDoctor/{id}(id=${doctor.doctorId})}"
+
+class="btn btn-warning btn-sm">
+
+<i class="bi bi-pencil-fill"></i>
+
+</a>
+
+<a
+
+th:href="@{/deleteDoctor/{id}(id=${doctor.doctorId})}"
+
+class="btn btn-danger btn-sm"
+
+onclick="return confirm('Delete this doctor?')">
+
+<i class="bi bi-trash-fill"></i>
+
+</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+const search=document.getElementById("searchDoctor");
+
+search.addEventListener("keyup",function(){
+
+let filter=this.value.toLowerCase();
+
+let rows=document.querySelectorAll("#doctorTable tr");
+
+rows.forEach(function(row){
+
+let text=row.innerText.toLowerCase();
+
+row.style.display=text.includes(filter)?"":"none";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

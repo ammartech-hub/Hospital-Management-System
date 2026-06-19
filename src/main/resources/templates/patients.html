@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Patients</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+🏥 HMS
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="/dashboard">
+
+<i class="bi bi-speedometer2"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="/patients">
+
+<i class="bi bi-people-fill"></i>
+
+Patients
+
+</a>
+
+</li>
+
+<li>
+
+<a href="/doctors">
+
+<i class="bi bi-heart-pulse-fill"></i>
+
+Doctors
+
+</a>
+
+</li>
+
+<li>
+
+<a href="/appointments">
+
+<i class="bi bi-calendar-check-fill"></i>
+
+Appointments
+
+</a>
+
+</li>
+
+<li>
+
+<a href="/billing">
+
+<i class="bi bi-cash-stack"></i>
+
+Billing
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>
+
+Patients
+
+</h2>
+
+<p>
+
+Manage Hospital Patients
+
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="search-box">
+
+<i class="bi bi-search"></i>
+
+<input
+id="search"
+type="text"
+placeholder="Search Patient...">
+
+</div>
+
+<a
+href="/addPatient"
+class="btn btn-primary">
+
+<i class="bi bi-plus-circle"></i>
+
+Add Patient
+
+</a>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Age</th>
+
+<th>Gender</th>
+
+<th>Phone</th>
+
+<th>Disease</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+
+<tr th:each="patient : ${patients}">
+
+<td th:text="${patient.patientId}"></td>
+
+<td>
+
+<i class="bi bi-person-circle text-primary"></i>
+
+<span th:text="${patient.patientName}"></span>
+
+</td>
+
+<td th:text="${patient.age}"></td>
+
+<td>
+
+<span
+class="badge bg-primary"
+th:text="${patient.gender}">
+
+</span>
+
+</td>
+
+<td th:text="${patient.phone}"></td>
+
+<td>
+
+<span
+class="badge bg-warning text-dark"
+th:text="${patient.disease}">
+
+</span>
+
+</td>
+
+<td>
+
+<a
+th:href="@{/editPatient/{id}(id=${patient.patientId})}"
+class="btn btn-warning btn-sm">
+
+<i class="bi bi-pencil-square"></i>
+
+</a>
+
+<a th:href="@{/deletePatient/{id}(id=${patient.patientId})}"
+class="btn btn-danger btn-sm delete-btn"
+onclick="return confirm('Delete this patient?')">
+
+<i class="bi bi-trash-fill"></i>
+
+</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",()=>{
+
+let filter=search.value.toLowerCase();
+
+let rows=document.querySelectorAll("#tableBody tr");
+
+rows.forEach(row=>{
+
+let text=row.innerText.toLowerCase();
+
+row.style.display=text.includes(filter)?"":"none";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
