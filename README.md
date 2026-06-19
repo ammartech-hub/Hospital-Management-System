@@ -148,28 +148,6 @@ http://localhost:8080
 
 ---
 
-# 📸 Screenshots
-
-### Login Page
-<img width="100%" src="screenshots/login.png">
-
-### Dashboard
-<img width="100%" src="screenshots/dashboard.png">
-
-### Patients
-<img width="100%" src="screenshots/patients.png">
-
-### Doctors
-<img width="100%" src="screenshots/doctors.png">
-
-### Appointments
-<img width="100%" src="screenshots/appointments.png">
-
-### Billing
-<img width="100%" src="screenshots/billing.png">
-
----
-
 # 🎯 Future Improvements
 
 - Email Notifications
